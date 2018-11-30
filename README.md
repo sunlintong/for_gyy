@@ -46,3 +46,5 @@ go 有一个国人编写的开源web框架[beego](beego.me),它帮我们方便�
 - 如果有兴趣的话，希望能先学习`git`,对毕设的版本控制，以及工作后都相当有帮助
 - `github`使用的就是git,可以先注册一个`github`账号，然后使用`git`不断将代码推送至`github`
 - `git`的学习可以参考[廖雪峰官方网站](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
+- 有任何问题，可以在如下图的地方提issue哟，我也可以更新文档滴！  
+![issue](pictures/issue.png)

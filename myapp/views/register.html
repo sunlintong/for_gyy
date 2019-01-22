@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>注册 | Myapp</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">
+  <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
+  <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+  <style>
+    .header {
+      text-align: center;
+    }
+    .header h1 {
+      font-size: 200%;
+      color: #333;
+      margin-top: 30px;
+    }
+    .header p {
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+<div class="header">
+  <div class="am-g">
+    <h1>Myapp</h1>
+    <p>docker容器管理平台<br/>容器，镜像，日志</p>
+  </div>
+  <hr />
+</div>
+<div class="am-g">
+  <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
+    <h3>注 册</h3>
+    <hr>
+    <div class="am-btn-group">
+      <a href="https://github.com/sunlintong/myapp" class="am-btn am-btn-secondary am-btn-sm">
+        <i class="am-icon-github am-icon-sm"></i> Github</a>
+      <a href="https://google.com" class="am-btn am-btn-success am-btn-sm">
+        <i class="am-icon-google-plus-square am-icon-sm"></i> Google+</a>
+      <a href="https://stackoverflow.com" class="am-btn am-btn-primary am-btn-sm">
+        <i class="am-icon-stack-overflow am-icon-sm"></i> stackOverflow</a>
+    </div>
+    <br>
+    <br>
+      <form class="am-form">
+      <label for="account">账号:</label>
+      <input type="email" id="account" required="required">
+      <br>
+      <label for="password">密码:</label>
+      <input type="password" id="password" required="required">
+      <br>
+      <label for="isadmin">
+        <input id="isadmin" type="checkbox">
+        注册为管理员
+      </label>
+      <br />
+      <div class="am-cf">
+        <input type="button" onclick="register()" value="注 册" class="am-btn am-btn-primary am-btn-sm am-fl">
+        <input type="button" onclick="login()" value=" 直接登录 " class="am-btn am-btn-default am-btn-sm am-fr">
+      </div>
+    </form>
+    <hr>
+    <p>© myapp,developed by sunlintong scu.</p>
+  </div>
+</div>
+</body>
+</html>
+
+<script>
+function register() {
+  var name = document.getElementById("account").value
+  if (name == "") {
+    alert("用户名不能为空！")
+    return
+  }
+  var password = document.getElementById("password").value
+  if (password == "") {
+    alert("密码不能为空！")
+    return
+  }
+  var isadmin = document.getElementById("isadmin").checked
+  $.ajax({
+      type: "POST",
+      dataType: "json",
+      url: "/register",
+      contentType: 'application/json',
+      data: JSON.stringify({
+        user_name: name,
+        user_password: password,
+        isadmin: isadmin
+      }),
+      success: function (data) {
+        console.log(data)
+        if (confirm("注册成功，跳转至登录？")) {
+          self.location = "/login"
+        } else {
+          location.reload()
+        }
+      },
+      error: function (data) {
+        console.log(data)
+        alert(data.responseJSON.Log)
+      }
+    })
+}
+
+
+function login() {
+  self.location = "/login"
+}
+</script>

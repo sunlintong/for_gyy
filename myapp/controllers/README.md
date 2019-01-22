@@ -1,0 +1,3 @@
+# controller目录进行接口的处理
+base_controller文件写了几个函数，方便继承BaseController的对象使用它的函数
+另两个文件分别处理注册和登录请求
